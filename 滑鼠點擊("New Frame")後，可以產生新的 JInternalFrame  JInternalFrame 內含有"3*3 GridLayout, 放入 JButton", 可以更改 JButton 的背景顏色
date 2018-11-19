@@ -1,0 +1,74 @@
+import java.awt.*;
+		import java.awt.event.*;
+		import javax.swing.*;
+
+import p1.p33.ActLis;
+
+		public class p2 extends JFrame
+		{  
+		   static GridLayout grid = new GridLayout(3,3);
+		   static JFrame frm=new JFrame("JInternalFrame");
+		   static JButton btn=new JButton("New Frame"); //
+         
+		   static Container cp=frm.getContentPane();   // 
+		   static JDesktopPane jdp=new JDesktopPane(); // 
+		   static JColorChooser JCC = new JColorChooser();
+		   static Color color;
+		   public static void main(String args[])
+		   {
+			  
+			  
+		       cp.setLayout(new BorderLayout());
+		       cp.add(btn,BorderLayout.SOUTH);
+		       cp.add(jdp);        // 
+
+		       btn.addActionListener(new ActLis());
+		       frm.setSize(400,300);
+		       frm.setVisible(true);
+		   }
+
+		   static class ActLis implements ActionListener
+		   {
+		      static int count=1;   
+		      public void actionPerformed(ActionEvent e)
+		      {   
+		    	
+		         JInternalFrame jif;  
+		         jif=new JInternalFrame("Frame "+(count++),true,true,true,true);
+		        
+		         Container icp=jif.getContentPane();  
+		        
+		         jif.setLayout(grid);
+		         JButton[][] btn = new JButton[3][3];
+		         for (int i=0;2>=i;i++) {
+		        	 for(int j=0;2>=j;j++) {
+		        		 btn[i][j] = new JButton(String.valueOf(i + "-" + j));
+		        		 jif.add(btn[i][j]);
+		        		  btn[i][j].addActionListener(new ActLiss());
+		        	 }
+		         }
+		         
+       		
+			     jif.setLayout(grid); 
+		         
+		         jdp.add(jif);     
+		         jif.setSize(200,150);
+		         jif.setVisible(true);
+		      }
+		   }
+		   static class ActLiss implements ActionListener
+		   {
+
+			@Override
+			public void actionPerformed(ActionEvent b) {
+				   JButton JB = (JButton) b.getSource();
+		            color = JCC.showDialog(frm,"JColorChooser",Color.pink);
+		            JB.setBackground(color);
+				
+			}
+			   
+			   
+		   }
+	}
+
+

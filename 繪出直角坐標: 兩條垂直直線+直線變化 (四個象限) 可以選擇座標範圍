@@ -1,0 +1,96 @@
+import java.awt.*;
+import java.awt.event.*;
+
+
+public class main3 extends Frame implements ItemListener
+{
+    static main3 frm=new main3();
+    static List li=new List();
+
+    public static void main(String args[])
+    {
+
+        frm.setTitle("Drawing example");
+
+        frm.setSize(200,150);
+
+
+        li.addItemListener(frm);
+            li.add("300-900");
+            li.add("300-700");
+            frm.add(li);
+
+        frm.setVisible(true);
+        frm.addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent e) {
+                System.exit(0);
+            }
+        });
+        frm.setLayout(null);
+    }
+
+
+    @Override
+    public void itemStateChanged(ItemEvent e) {
+            String lic=li.getSelectedItem();
+            if (lic=="300-900") {
+                Graphics g = getGraphics();       
+                g.drawLine(300, 300, 300, 900);
+                g.drawLine(0, 600, 600, 600);
+                for (int i = 0; 300 >= i; i = i + 50) {
+
+                    g.drawLine(300, 300 + i - 45, 300 + i, 600);
+                }
+                for (int i = 0; 300 >= i; i = i + 50) {
+
+                    g.drawLine(300, 300 + i - 45, 300 - i, 600);
+                }
+                for (int i = 0; 300 >= i; i = i + 50) {
+
+                    g.drawLine(300, 900 - i + 45, 300 + i, 600);
+                }
+                for (int i = 0; 300 >= i; i = i + 50) {
+
+                    g.drawLine(300, 900 - i + 45, 300 - i, 600);
+                }
+            }
+            else  if (lic=="300-700"){
+                Graphics g = getGraphics();        // ���o������ø�ϰ�
+                g.drawLine(300, 300, 300, 700);
+                g.drawLine(0, 500, 600, 500);
+                for (int i = 0; 200 >= i; i = i + 40) {
+
+                    g.drawLine(300, 300 + i - 45, 300 + i, 500);
+                }
+                for (int i = 0; 200 >= i; i = i + 40) {
+
+                    g.drawLine(300, 300 + i - 45, 300 - i, 500);
+                }
+                for (int i = 0; 200 >= i; i = i + 40) {
+
+                    g.drawLine(300, 700 - i + 45, 300 + i, 500);
+                }
+                for (int i = 0; 200 >= i; i = i + 40) {
+
+                    g.drawLine(300, 700 - i + 45, 300 - i, 500);
+                }
+
+            }
+
+
+
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
